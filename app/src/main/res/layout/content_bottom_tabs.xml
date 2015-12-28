@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:gravity="bottom"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.vivo.zhouchen.wifibenchmark.test.BottomTabsActivity"
+    tools:showIn="@layout/activity_bottom_tabs">
+
+    <TextView
+        android:gravity="center"
+        android:layout_gravity="top"
+        android:id="@+id/showItem"
+        android:text="HELLO"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:paddingLeft="10dp"
+        style="@style/BottomTabsDividerHer"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#FF909090"/>
+
+
+    <include layout="@layout/bottom_tabs"/>
+
+    <View
+        android:paddingLeft="10dp"
+        style="@style/BottomTabsDividerHer"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:visibility="gone"
+        android:background="#FF909090"/>
+
+
+    <RadioGroup
+        android:id= "@+id/radiogroup"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        android:layout_height="50dp">
+
+        <RadioButton
+            style="@style/BottomTabs"
+            android:id="@+id/radio_throughput"
+            android:gravity="center"
+            android:text="吞吐性能"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textColor="@color/color_selected"
+            android:layout_height="match_parent" />
+
+        <include layout="@layout/bottomtabdivider_vertical"/>
+        <RadioButton
+            style="@style/BottomTabs"
+
+            android:id="@+id/radio_basic"
+            android:gravity="center"
+            android:text="基本性能"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:textColor="@color/color_selected"
+
+            android:layout_height="match_parent" />
+
+        <include layout="@layout/bottomtabdivider_vertical"/>
+        <RadioButton
+
+            style="@style/BottomTabs"
+
+            android:id="@+id/radio_network"
+            android:gravity="center"
+            android:text="网络性能"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:textColor="@color/color_selected"
+
+            android:layout_height="match_parent" />
+
+        <include layout="@layout/bottomtabdivider_vertical"/>
+
+        <RadioButton
+
+            style="@style/BottomTabs"
+
+            android:id="@+id/radio_account"
+            android:gravity="center"
+            android:text="我的账户"
+
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:textColor="@color/color_selected"
+
+            android:layout_height="match_parent" />
+    </RadioGroup>
+
+</LinearLayout>

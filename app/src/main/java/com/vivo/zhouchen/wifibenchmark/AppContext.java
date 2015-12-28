@@ -2,9 +2,10 @@ package com.vivo.zhouchen.wifibenchmark;
 
 import android.app.Application;
 
-import com.joanzapata.iconify.Iconify;
-import com.joanzapata.iconify.fonts.FontAwesomeModule;
+//import com.joanzapata.iconify.Iconify;
+//import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.Logger;
+import com.squareup.otto.Bus;
 
 import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
@@ -16,10 +17,15 @@ import cn.bmob.v3.BmobInstallation;
 public class AppContext extends Application {
     private static AppContext instance;
 
+    private static final Bus BUS = new Bus();
 
     public static AppContext getInstance() {
         Logger.e("context is " + instance);
         return instance;
+    }
+
+    public static Bus getBusInstance(){
+        return BUS;
     }
 
     @Override
@@ -31,9 +37,8 @@ public class AppContext extends Application {
         BmobInstallation.getCurrentInstallation(this).save();
         // 启动推送服务
         BmobPush.startWork(this, "492119a3da2275e2a3e79e8dea105102");
-        Iconify.with(new FontAwesomeModule());
+        //Iconify.with(new FontAwesomeModule());
         instance = this;
-        Logger.e("context is " + instance + " on create ") ;
     }
 
 }

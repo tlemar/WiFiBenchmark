@@ -2,4 +2,136 @@
     <string name="app_name">WiFiBenchmark</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_one_click_test">OneClickTest</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="title_activity_web_app_test">WebAppTest</string>
+    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+    <string name="title_activity_bottom_tabs">BottomTabsActivity</string>
+
+
+    <string name="test_item_basic">Basic Test</string>
+    <string name="test_item_throughput">Throughput Test</string>
+    <string name="test_item_network">Network Test</string>
+    <string name="test_item_account">Account</string>
+    <string name="title_activity_basic_test">BasicTestActivity</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_throughput_test">ThroughputTestActivity</string>
+    <string name="title_activity_network_test">NetworkTestActivity</string>
+    <string name="title_activity_my_account">MyAccountActivity</string>
+
+
+    <string name="connect_press">连接-压力</string>
+    <string name="connect_analysis">连接-时长分析</string>
+    <string name="scan_press">扫描-压力</string>
+    <string name="scan_listen">扫描-监听</string>
+    <string name="pref_sync">pref_sync</string>
+
+
+    <string name="connect_press_key">connect_press_key</string>
+    <string name="connect_press_title">连接-压力测试</string>
+    <string name="connect_press_summary"></string>
+
+    <string name="connect_analysis_key">connect_analysis_key</string>
+    <string name="connect_analysis_title">连接-时长分析</string>
+    <string name="connect_analysis_summary"></string>
+
+    <string name="scan_press_key">scan_press_key</string>
+    <string name="scan_press_title">扫描-压力测试</string>
+    <string name="scan_press_summary"></string>
+
+
+    <string name="scan_listen_key">scan_listen_key</string>
+    <string name="scan_listen_title">扫描-监听</string>
+    <string name="scan_listen_summary"></string>
+
+    <string name="iperf_uni_upload_key">iperf_uni_upload_key</string>
+    <string name="iperf_uni_upload_titile">iperf-单独上传</string>
+    <string name="iperf_uni_upload_summary">单独测试</string>
+
+    <string name="iperf_uni_download_key">iperf_uni_download_key</string>
+    <string name="iperf_uni_download_title">iperf-单独下载</string>
+    <string name="iperf_uni_download_summary">单独下载</string>
+
+    <string name="iperf_dul_download_key">iperf_dul_down_key</string>
+    <string name="iperf_dul_download_title">iperf-竞争下载</string>
+    <string name="iperf_dul_download_summary">竞争下载</string>
+
+    <string name="iperf_dul_upload_key">iperf_dul_upload_key</string>
+    <string name="iperf_dul_upload_title">iperf-竞争上传</string>
+    <string name="iperf_dul_upload_summary"></string>
+
+    <string name="bt_play_upload_key">iperf_bt_upload_key</string>
+    <string name="bt_play_upload_title">蓝牙播放-上传</string>
+    <string name="bt_play_upload_summary"></string>
+
+    <string name="bt_play_download_key">iperf_bt_download_key</string>
+    <string name="bt_play_download_title">蓝牙播放-下载</string>
+    <string name="bt_play_download_summary"></string>
+
+
+    <string name="switch_key">wifi_switch</string>
+    <string name="switch_title">wifi开关</string>
+    <string name="switch_summay"></string>
+
+    <string name="real_network">实网</string>
+
+    <string name="real_network_upload_key">real_network_upload_key</string>
+    <string name="real_network_upload_title">实网上传</string>
+    <string name="real_network_upload_summary"></string>
+
+    <string name="real_network_download_key">real_network_download_key</string>
+    <string name="real_network_download_title">实网下载</string>
+    <string name="real_network_download_summary"></string>
+
+    <string name="bt_call_upload_key">bt_call_upload_key</string>
+    <string name="bt_call_upload_title">蓝牙通话-上传</string>
+    <string name="bt_call_upload_summay"></string>
+
+    <string name="bt_call_download_key">bt_call_download_key</string>
+    <string name="bt_call_download_title">蓝牙通话-下载</string>
+    <string name="bt_call_download_summay"></string>
+
+
+    <!-- 配置条件检查错误信息 -->
+    <string name="error_code_wifi_not_open">wifi没有打开</string>
+    <string name="error_code_wifi_not_connect">wifi 没有连接</string>
+    <string name="error_code_bt_not_open">bt没有打开</string>
+    <string name="error_code_bt_not_connect">bt没有连接</string>
+    <string name="error_code_iperf_init_fail">iperf初始化失败</string>
+    <string name="error_code_iperf_cmd_error">iperf参数错误</string>
+    <string name="error_code_connect_fail">与PC端连接失败</string>
+    <string name="error_code_nsd_fail">网络发现服务失败</string>
+    <string name="error_code_peer_conn_fail">连接同伴失败</string>
+    <string name="error_code_tries_fail">tries参数错误</string>
+
+    <string name="error_type_wifi">wifi</string>
+    <string name="error_type_bt">BlueTooth</string>
+    <string name="error_type_iperf_init">IperfInit</string>
+    <string name="error_type_iperf_cmd">IperfCmd</string>
+    <string name="error_type_peer_connect">peer_connect</string>
+    <string name="error_type_tries_fail">ties_error</string>
+
+
+    <string name="error_type_connect">Connect</string>
+    <string name="error_type_nsd">Nsd</string>
+    <!--和iperf相关的字符串信息-->
+    <!--<string name="iperf_"-->
+    <string name="controller_iperf_start">开启iperf</string>
+    <string name="controller_iperf_stop">关闭iperf</string>
+    <string name="controller_iperf_cmd_key">iperf_cmd</string>
+    <string name="controller_iperf_switch_key">iperf_switch</string>
+    <!--<string name=""-->
+
+    <!--关于preference 中的字符串匹配 -->
+    <string name="pref_host_key">host_addr</string>
+    <string name="pref_duration_key">duration_time</string>
+    <string name="pref_window_size_key">window_size</string>
+    <string name="pref_iperf_port_key">iperf_port</string>
+    <string name="pref_ctrl_port_key">ctrl_port</string>
+    <string name="pref_peer_host_key">peer_host</string>
+    <string name="pref_peer_port_key">peer_port</string>
+
+
 </resources>

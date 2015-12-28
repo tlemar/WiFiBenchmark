@@ -1,42 +1,56 @@
 package com.vivo.zhouchen.wifibenchmark.Activities;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.AnimRes;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.orhanobut.logger.Logger;
 import com.squareup.otto.Subscribe;
 import com.umeng.analytics.MobclickAgent;
-import com.viewpagerindicator.TabPageIndicator;
 import com.vivo.zhouchen.wifibenchmark.AnyEventType;
 import com.vivo.zhouchen.wifibenchmark.AppContext;
+import com.vivo.zhouchen.wifibenchmark.Fragments.BasicFragment;
+import com.vivo.zhouchen.wifibenchmark.Fragments.NetWorkFragment;
+import com.vivo.zhouchen.wifibenchmark.Fragments.ThroughputFragment;
 import com.vivo.zhouchen.wifibenchmark.R;
-import com.vivo.zhouchen.wifibenchmark.TabAdapter;
 import com.vivo.zhouchen.wifibenchmark.ottoAction.TestAction;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
-    TabPageIndicator mTabPageIndicator;
-    ViewPager mViewPager;
-    private TabAdapter mAdapter ;
 
+
+    private FragmentName currentFragment;
+
+    private BasicFragment mBasicFrag;
+    private ThroughputFragment mThroughputFrag;
+    private NetWorkFragment mNetworkFrag;
+
+    private int currentItem = -1;
+
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+
+    //
     private List<Fragment> mFragments;
 
     @Override
@@ -44,21 +58,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Intent intent = new Intent();
-        mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
-        mTabPageIndicator = (TabPageIndicator) findViewById(R.id.id_indicator);
-        mAdapter = new TabAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mAdapter);
-
-
-        mTabPageIndicator.setViewPager(mViewPager, 0);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ImageView imageView = new ImageView(this);
-        imageView.setImageDrawable(new IconDrawable(this, FontAwesomeIcons.fa_share));
-
+        //imageView.setImageDrawable(new IconDrawable(this, FontAwesomeIcons.fa_share));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,19 +75,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        List<String> mHotSpotPackageNames = new ArrayList<String>();
-        mHotSpotPackageNames.add("com.vivo.easyshare");
-
-        Logger.e(" is easyShare " + mHotSpotPackageNames.contains("com.vivo.easyshare"));
-        Logger.e(" is test" + mHotSpotPackageNames.contains("test"));
-
-        Logger.e("10010 name :" + getPackageManager().getNameForUid(10010));
-
-
         AppContext.getBusInstance().register(this);
-
         EventBus.getDefault().register(this);
-
         EventBus.getDefault().post(new AnyEventType());
 
     }
@@ -91,7 +85,127 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+        initDrawer();
+        mBasicFrag = new BasicFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_fragment_holder, mBasicFrag)
+                .commit();
+        Logger.e("activity on resume");
+
     }
+
+    private void initDrawer() {
+
+        ListView drawerList = (ListView) findViewById(R.id.left_drawer);
+        drawerList.setItemsCanFocus(false);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+        String[] leftSliderData = {getString(R.string.test_item_basic), getString(R.string.test_item_throughput), getString(R.string.test_item_network)
+                , getString(R.string.test_item_account)};
+
+        ArrayAdapter<String> navigationDrawerAdapter = new ArrayAdapter<>(
+                MainActivity.this, R.layout.drawer_list_item, R.id.tv_list_item, leftSliderData);
+
+        drawerList.setAdapter(navigationDrawerAdapter);
+
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
+                toolbar, 0, 0) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                invalidateOptionsMenu();
+                syncState();
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+                syncState();
+            }
+        };
+
+        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Logger.d("position is " + position);
+                Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
+                Intent intent;
+
+                switch (position) {
+                    case 0:
+                        Logger.e("basic clicked");
+                        intent = new Intent(getApplicationContext(), BasicTestActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(getApplicationContext(), ThroughputTestActivity.class);
+                        startActivity(intent);
+
+                        break;
+                    case 2:
+                        intent = new Intent(getApplicationContext(), NetworkTestActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 3:
+                        intent = new Intent(getApplicationContext(), MyAccountActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                        }
+                    }, 200);
+                }
+            }
+        });
+        drawerLayout.setDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+    }
+
+
+    private void fragmentSwitcher(Fragment fragment, int itemId,
+                                  FragmentName fname, @AnimRes int animationEnter,
+                                  @AnimRes int animationExit) {
+        currentFragment = fname;
+        if (currentItem == itemId) {
+            // Don't allow re-selection of the currently active item
+            return;
+        }
+        currentItem = itemId;
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(String.valueOf(fname));
+
+        }
+
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(animationEnter, animationExit)
+                .replace(R.id.main_fragment_holder, fragment)
+                .commit();
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+            }, 200);
+        }
+    }
+
+
+    public enum FragmentName {
+        Basic, Throughput, NetWork, Account
+    }
+
 
     @Override
     public void onPause() {
@@ -100,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void testAction(TestAction testAction){
+    public void testAction(TestAction testAction) {
         //这里更新视图或者后台操作,从TestAction获取传递参数.
         Logger.e("receving action from otto");
     }
@@ -113,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         AppContext.getBusInstance().unregister(this);
         super.onDestroy();
     }

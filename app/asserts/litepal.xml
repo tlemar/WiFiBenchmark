@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="wifiTest" ></dbname>
+
+    <version value="2" ></version>
+
+    <list>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.SpeedTable"></mapping>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.WifiInfoTable">test</mapping>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.ConnInfoTable"></mapping>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.WifiEnvTable"></mapping>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.WifiStableTestTable"></mapping>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.NetUrlsTable"></mapping>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.NetSpeedTable"/>
+        <mapping class="vivo.zhouchen.wifiBaseLibrary.model.TestEventLogTable"/>
+
+
+        <mapping class="com.example.myapp01.Models.BtCallIperfDownloadTable"/>
+        <mapping class="com.example.myapp01.Models.BtCallIperfUploadTable"/>
+        <mapping class="com.example.myapp01.Models.BtPlayIperfDownloadTable"/>
+        <mapping class="com.example.myapp01.Models.BtPlayIperfUploadTable"/>
+        <mapping class="com.example.myapp01.Models.IperfDulDownloadTable"/>
+        <mapping class="com.example.myapp01.Models.IperfDulUploadTable"/>
+        <mapping class="com.example.myapp01.Models.IperfUniUploadTable"/>
+        <mapping class="com.example.myapp01.Models.IperfUniDownloadTable"/>
+
+        <mapping class="com.example.myapp01.Models.IperfSpeedTable"/>
+
+        <mapping class="com.example.myapp01.Models.WifiOpenStressTable"/>
+
+    </list>
+</litepal>

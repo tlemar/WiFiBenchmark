@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_gravity="bottom"
+    android:background="#FFFFFF"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:id="@+id/ll_basic"
+        style="@style/BottomTabs"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_basic"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_access_alarm_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_basic"
+            style="@style/BottomTabs.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="基本性能" />
+    </LinearLayout>
+
+    <include layout="@layout/bottomtabdivider_vertical" />
+
+    <LinearLayout
+        android:id="@+id/ll_throughput"
+        style="@style/BottomTabs"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_throughput"
+            android:layout_width="match_parent"
+
+            android:layout_height="30dp"
+            android:src="@drawable/ic_access_alarm_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_throughput"
+            style="@style/BottomTabs.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="吞吐性能"
+
+            />
+    </LinearLayout>
+
+    <include layout="@layout/bottomtabdivider_vertical" />
+
+    <LinearLayout
+        android:id="@+id/ll_network"
+        style="@style/BottomTabs"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_network"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_access_alarm_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_network"
+            style="@style/BottomTabs.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="网络性能"
+
+            />
+    </LinearLayout>
+
+    <include layout="@layout/bottomtabdivider_vertical" />
+
+    <LinearLayout
+        android:id="@+id/ll_account"
+        style="@style/BottomTabs"
+
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_account"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_access_alarm_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_account"
+            style="@style/BottomTabs.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="我的账户" />
+    </LinearLayout>
+
+
+</LinearLayout>
+

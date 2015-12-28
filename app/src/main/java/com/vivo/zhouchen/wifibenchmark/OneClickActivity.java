@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
 
 
 import at.grabner.circleprogress.CircleProgressView;
+import de.greenrobot.event.EventBus;
 
 public class OneClickActivity extends AppCompatActivity {
 
@@ -62,6 +64,12 @@ public class OneClickActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
             }
         });
+
+        EventBus.getDefault().register(this);
+    }
+
+    public void onEvent(AnyEventType type) {
+        Logger.d("receive type");
     }
 
 }
